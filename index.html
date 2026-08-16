@@ -225,6 +225,23 @@
             pointer-events: none;
         }
 
+        #tv-chart {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
         .hero-content {
             position: relative;
             z-index: 10;
@@ -344,313 +361,7 @@
         .card-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
         .card-link { font-family: 'Space Mono'; font-size: 0.85rem; color: var(--accent-orange); }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .grid-container { grid-template-columns: repeat(2, 1fr); }
-            .hero-headline { font-size: 4rem; }
-        }
-
-        @media (max-width: 768px) {
-            .grid-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .hero-headline { font-size: 3rem; }
-            section { padding: 5rem 5%; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="trident-spin">🔱</div>
-        <div class="brand-text">BANTEEX</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill"></div>
-        </div>
-    </div>
-
-    <div class="global-watermark">TEAM BANTEEX</div>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="logo">🔱 BANTEEX</div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#indicators">Indicators</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Join Community</button>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero">
-        <!-- 3D Canvas Background -->
-        <canvas id="three-canvas"></canvas>
-        
-        <div class="hero-content">
-            <h1 class="hero-headline bebas">
-                <span>TRADE WITH</span>
-                <span class="text-orange">PRECISION.</span>
-                <div class="gradient-line" style="width: 80%;"></div>
-                <span>BUILT ON</span>
-                <span class="text-orange">SMART MONEY.</span>
-                <div class="gradient-line" style="width: 80%;"></div>
-            </h1>
-            
-            <p class="hero-subtitle">Professional SMC Indicators for serious traders</p>
-            
-            <div class="hero-buttons">
-                <button class="btn-primary" style="padding: 1.2rem 3rem;">Explore Indicators</button>
-                <button class="btn-outline" style="padding: 1.2rem 3rem;">Join Bantee Community</button>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat-badge"><span class="counter" data-target="5">0</span>+ Indicators</div>
-                <div class="stat-badge">SMC Based</div>
-                <div class="stat-badge">Live Tested</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Indicators Section -->
-    <section id="indicators">
-        <div class="section-header">
-            <h2 class="bebas">OUR INDICATORS</h2>
-            <div class="gradient-line"></div>
-        </div>
-        
-        <div class="grid-container">
-            <!-- Cards -->
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-1.html'">
-                <div class="card-icon">🔱</div>
-                <h3 class="card-title">SMC Liquidity Sweep</h3>
-                <p class="card-desc">Automatically detect buy-side and sell-side liquidity pools and sweep formations within specific kill zones.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-2.html'">
-                <div class="card-icon">📊</div>
-                <h3 class="card-title">BTC SMC Scalper</h3>
-                <p class="card-desc">High-frequency algorithmic levels specifically optimized for Bitcoin volatility and micro-structure breaks.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-3.html'">
-                <div class="card-icon">🎯</div>
-                <h3 class="card-title">Demand Zone Hunter</h3>
-                <p class="card-desc">Identify unmitigated order blocks and institutional fair value gaps before the price returns to them.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-4.html'">
-                <div class="card-icon">📈</div>
-                <h3 class="card-title">Kill Zone EMA Confluence</h3>
-                <p class="card-desc">Combines algorithmic session times with institutional EMAs to filter out low-probability setups.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-5.html'">
-                <div class="card-icon">⚡</div>
-                <h3 class="card-title">Multi-Signal Dashboard</h3>
-                <p class="card-desc">A unified panel tracking RSI divergences, structural shifts, and volume anomalies across multiple pairs.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-6.html'">
-                <div class="card-icon">🔍</div>
-                <h3 class="card-title">Structure Break Detector</h3>
-                <p class="card-desc">Real-time CHoCH (Change of Character) and BOS (Break of Structure) mapping with trailing stops.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- JS Scripts -->
-    <script>
-        // 1. Loader Logic
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-                initThreeJS(); // Start heavy 3D after load
-            }, 2600);
-        });
-
-        // 2. Sticky Header
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // 3. 3D Card Tilt Effect
-        const cards = document.querySelectorAll('.tilt-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10;
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        });
-
-        // 4. Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    let count = 0;
-                    const updateCount = () => {
-                        const increment = target / 40;
-                        if(count < target) {
-                            count += increment;
-                            entry.target.innerText = Math.ceil(count);
-                            setTimeout(updateCount, 50);
-                        } else {
-                            entry.target.innerText = target;
-                        }
-                    };
-                    updateCount();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(counter => observer.observe(counter));
-
-        // 5. Three.js Hero Scene (Candles & Orbs with ORANGE glow)
-        function initThreeJS() {
-            const canvas = document.getElementById('three-canvas');
-            const scene = new THREE.Scene();
-            
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 2, 15);
-
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
-            scene.add(ambientLight);
-
-            // Orange Core Light
-            const orangeLight = new THREE.PointLight(0xFF6B00, 2, 50);
-            orangeLight.position.set(5, 5, 5);
-            scene.add(orangeLight);
-
-            const cyanLight = new THREE.PointLight(0x00E5FF, 1, 50);
-            cyanLight.position.set(-5, -5, 5);
-            scene.add(cyanLight);
-
-            // Candlesticks
-            const candles = [];
-            const materialBear = new THREE.MeshStandardMaterial({ 
-                color: 0xFF6B00, emissive: 0xFF6B00, emissiveIntensity: 0.4, roughness: 0.2 
-            });
-            const materialBull = new THREE.MeshStandardMaterial({ 
-                color: 0x00E5FF, emissive: 0x00E5FF, emissiveIntensity: 0.4, roughness: 0.2 
-            });
-            const wickMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5 });
-
-            for (let i = 0; i < 20; i++) {
-                const isBull = Math.random() > 0.5;
-                const bodyHeight = 1 + Math.random() * 3;
-                const bodyGeo = new THREE.BoxGeometry(0.4, bodyHeight, 0.4);
-                const wickGeo = new THREE.CylinderGeometry(0.03, 0.03, bodyHeight + 1);
-                
-                const body = new THREE.Mesh(bodyGeo, isBull ? materialBull : materialBear);
-                const wick = new THREE.Mesh(wickGeo, wickMaterial);
-                
-                const candleGroup = new THREE.Group();
-                candleGroup.add(wick);
-                candleGroup.add(body);
-                
-                // Position in an arc
-                candleGroup.position.x = (i - 10) * 1.5;
-                candleGroup.position.y = (Math.random() - 0.5) * 5;
-                candleGroup.position.z = Math.sin(i * 0.5) * 3 - 5;
-                
-                scene.add(candleGroup);
-                candles.push({
-                    mesh: candleGroup,
-                    speed: 0.01 + Math.random() * 0.02,
-                    offset: Math.random() * Math.PI * 2
-                });
-            }
-
-            // Floating Orbs
-            const orbs = [];
-            const orbGeo = new THREE.SphereGeometry(0.15, 16, 16);
-            for(let i=0; i<15; i++) {
-                const orbMat = new THREE.MeshStandardMaterial({
-                    color: Math.random() > 0.5 ? 0xFF6B00 : 0xFFD700,
-                    emissive: Math.random() > 0.5 ? 0xFF6B00 : 0xFFD700,
-                    emissiveIntensity: 1
-                });
-                const orb = new THREE.Mesh(orbGeo, orbMat);
-                orb.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*10, (Math.random()-0.5)*10);
-                scene.add(orb);
-                orbs.push({ mesh: orb, speed: 0.005 + Math.random()*0.01 });
-            }
-
-            // Animation Loop
-            let time = 0;
-            function animate() {
-                requestAnimationFrame(animate);
-                time += 0.01;
-
-                candles.forEach(c => {
-                    c.mesh.position.y += Math.sin(time * 2 + c.offset) * 0.01;
-                    c.mesh.rotation.y += c.speed * 0.5;
-                });
-
-                orbs.forEach((o, index) => {
-                    o.mesh.position.x += Math.sin(time + index) * 0.02;
-                    o.mesh.position.y += Math.cos(time + index) * 0.02;
-                });
-
-                // Subtle Scene Rotation
-                scene.rotation.y = Math.sin(time * 0.5) * 0.05;
-
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            // Resize Handler
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-            
-            // Mouse Parallax Effect
-            document.addEventListener('mousemove', (e) => {
-                const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-                
-                scene.rotation.x = mouseY * 0.05;
-                scene.rotation.y = mouseX * 0.05;
-                
-                const heroContent = document.querySelector('.hero-content');
-                heroContent.style.transform = `translate(${mouseX * 10}px, ${-mouseY * 10}px)`;
-                /* ABOUT SECTION */
+        /* ABOUT SECTION */
         #about {
             background-color: var(--bg-primary);
             position: relative;
@@ -665,7 +376,7 @@
         }
 
         #about > * {
-            transform: perspective(500px) rotateX(-60deg) scale(0.5); /* Counter grid perspective */
+            transform: perspective(500px) rotateX(-60deg) scale(0.5);
         }
 
         #flower-canvas {
@@ -713,9 +424,7 @@
             transition: transform 0.4s ease;
         }
         
-        .stat-box:hover .stat-top-border {
-            transform: scaleX(1);
-        }
+        .stat-box:hover .stat-top-border { transform: scaleX(1); }
 
         .stat-number { font-size: 3.5rem; line-height: 1; margin-bottom: 0.5rem; }
         .stat-label { font-family: 'Rajdhani'; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
@@ -752,24 +461,17 @@
         .community-content h2 { font-size: 3rem; margin-bottom: 1rem; }
         .community-content p { color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2.5rem; }
         
-        .community-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
+        .community-buttons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 
         .btn-binance {
-            background: #F0B90B; color: #000;
-            padding: 1rem 2.5rem; border-radius: 8px;
+            background: #F0B90B; color: #000; padding: 1rem 2.5rem; border-radius: 8px;
             font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
             border: none; cursor: pointer; transition: all 0.3s ease;
         }
         .btn-binance:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(240, 185, 11, 0.4); }
 
         .btn-x {
-            background: #FFF; color: #000;
-            padding: 1rem 2.5rem; border-radius: 8px;
+            background: #FFF; color: #000; padding: 1rem 2.5rem; border-radius: 8px;
             font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
             border: none; cursor: pointer; transition: all 0.3s ease;
         }
@@ -799,75 +501,156 @@
         }
 
         .form-input {
-            width: 100%;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--glass-border);
-            padding: 1rem;
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-family: 'Rajdhani';
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border);
+            padding: 1rem; border-radius: 8px; color: var(--text-primary);
+            font-family: 'Rajdhani'; font-size: 1rem; transition: all 0.3s ease;
         }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 15px rgba(255,107,0,0.2);
-        }
+        .form-input:focus { outline: none; border-color: var(--accent-orange); box-shadow: 0 0 15px rgba(255,107,0,0.2); }
 
         /* FOOTER */
         footer {
-            background: var(--bg-primary);
-            border-top: 1px solid var(--glass-border);
+            background: var(--bg-primary); border-top: 1px solid var(--glass-border);
             padding: 4rem 5% 1.5rem;
         }
 
         .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+            max-width: 1200px; margin: 0 auto 3rem;
         }
 
-        .footer-links, .footer-social {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-links a, .footer-social a {
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover, .footer-social a:hover {
-            color: var(--accent-orange);
-        }
+        .footer-links, .footer-social { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-links a, .footer-social a { color: var(--text-secondary); font-weight: 500; transition: color 0.3s ease; }
+        .footer-links a:hover, .footer-social a:hover { color: var(--accent-orange); }
 
         .footer-bottom {
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            text-align: center; border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem; color: var(--text-muted); font-size: 0.8rem;
         }
 
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+            .hero-headline { font-size: 4rem; }
             .about-grid, .contact-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; text-align: center; }
             #about { transform: none; background-image: none; }
             #about > * { transform: none; }
-           });
         }
-    </script>
+
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-headline { font-size: 3rem; }
+            section { padding: 5rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="trident-spin">🔱</div>
+        <div class="brand-text">BANTEEX</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <div class="global-watermark">TEAM BANTEEX</div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">🔱 BANTEEX</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#indicators">Indicators</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Join Community</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <canvas id="tv-chart"></canvas>
+        <canvas id="three-canvas"></canvas>
+        <canvas id="particles-canvas"></canvas>
+        
+        <div class="hero-content">
+            <h1 class="hero-headline bebas">
+                <span>TRADE WITH</span>
+                <span class="text-orange">PRECISION.</span>
+                <div class="gradient-line" style="width: 80%;"></div>
+                <span>BUILT ON</span>
+                <span class="text-orange">SMART MONEY.</span>
+                <div class="gradient-line" style="width: 80%;"></div>
+            </h1>
+            
+            <p class="hero-subtitle">Professional SMC Indicators for serious traders</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" style="padding: 1.2rem 3rem;">Explore Indicators</button>
+                <button class="btn-outline" style="padding: 1.2rem 3rem;">Join Bantee Community</button>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-badge"><span class="counter" data-target="5">0</span>+ Indicators</div>
+                <div class="stat-badge">SMC Based</div>
+                <div class="stat-badge">Live Tested</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indicators Section -->
+    <section id="indicators">
+        <div class="section-header">
+            <h2 class="bebas">OUR INDICATORS</h2>
+            <div class="gradient-line"></div>
+        </div>
+        
+        <div class="grid-container">
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-1.html'">
+                <div class="card-icon">🔱</div>
+                <h3 class="card-title">SMC Liquidity Sweep</h3>
+                <p class="card-desc">Automatically detect buy-side and sell-side liquidity pools and sweep formations within specific kill zones.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-2.html'">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">BTC SMC Scalper</h3>
+                <p class="card-desc">High-frequency algorithmic levels specifically optimized for Bitcoin volatility and micro-structure breaks.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-3.html'">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Demand Zone Hunter</h3>
+                <p class="card-desc">Identify unmitigated order blocks and institutional fair value gaps before the price returns to them.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-4.html'">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">Kill Zone EMA Confluence</h3>
+                <p class="card-desc">Combines algorithmic session times with institutional EMAs to filter out low-probability setups.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-5.html'">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Multi-Signal Dashboard</h3>
+                <p class="card-desc">A unified panel tracking RSI divergences, structural shifts, and volume anomalies across multiple pairs.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-6.html'">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">Structure Break Detector</h3>
+                <p class="card-desc">Real-time CHoCH (Change of Character) and BOS (Break of Structure) mapping with trailing stops.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about">
-        <!-- 3D Flower Canvas -->
         <canvas id="flower-canvas"></canvas>
-        
         <div class="about-grid">
             <div class="about-stats">
                 <div class="stat-box">
@@ -900,7 +683,7 @@
         </div>
     </section>
 
-    <!-- Community / CTA Section -->
+    <!-- Community Section -->
     <section id="community">
         <div class="community-content">
             <h2 class="bebas">JOIN THE BANTEE ALPHA COMMUNITY</h2>
@@ -956,6 +739,219 @@
             <p>© 2026 BanteeX | Bantee Alpha 🔱 | Not Financial Advice</p>
         </div>
     </footer>
+
+    <!-- JS Scripts -->
+    <script>
+        // 1. Loader & Sticky Header
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                initThreeJS();
+                initFlower3D();
+                initParticles();
+                initTVChart();
+            }, 2600);
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // 2. 3D Card Tilt Effect
+        const cards = document.querySelectorAll('.tilt-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -10;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // 3. Observers (Scroll fade & Counters)
+        const sections = document.querySelectorAll('section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => {
+            section.style.opacity = '0'; section.style.transform = 'translateY(40px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            sectionObserver.observe(section);
+        });
+
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    let count = 0;
+                    const updateCount = () => {
+                        const increment = target / 40;
+                        if(count < target) {
+                            count += increment; entry.target.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 50);
+                        } else entry.target.innerText = target;
+                    };
+                    updateCount();
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // 4. Three.js Hero Scene
+        function initThreeJS() {
+            const canvas = document.getElementById('three-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 15);
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+            const orangeLight = new THREE.PointLight(0xFF6B00, 2, 50); orangeLight.position.set(5, 5, 5); scene.add(orangeLight);
+            const cyanLight = new THREE.PointLight(0x00E5FF, 1, 50); cyanLight.position.set(-5, -5, 5); scene.add(cyanLight);
+
+            const candles = [];
+            const matBear = new THREE.MeshStandardMaterial({ color: 0xFF6B00, emissive: 0xFF6B00, emissiveIntensity: 0.4, roughness: 0.2 });
+            const matBull = new THREE.MeshStandardMaterial({ color: 0x00E5FF, emissive: 0x00E5FF, emissiveIntensity: 0.4, roughness: 0.2 });
+            const wickMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5 });
+
+            for (let i = 0; i < 20; i++) {
+                const bodyHeight = 1 + Math.random() * 3;
+                const body = new THREE.Mesh(new THREE.BoxGeometry(0.4, bodyHeight, 0.4), Math.random() > 0.5 ? matBull : matBear);
+                const wick = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, bodyHeight + 1), wickMat);
+                const candleGroup = new THREE.Group();
+                candleGroup.add(wick); candleGroup.add(body);
+                candleGroup.position.set((i - 10) * 1.5, (Math.random() - 0.5) * 5, Math.sin(i * 0.5) * 3 - 5);
+                scene.add(candleGroup);
+                candles.push({ mesh: candleGroup, speed: 0.01 + Math.random() * 0.02, offset: Math.random() * Math.PI * 2 });
+            }
+
+            const orbs = [];
+            const orbGeo = new THREE.SphereGeometry(0.15, 16, 16);
+            for(let i=0; i<15; i++) {
+                const color = Math.random() > 0.5 ? 0xFF6B00 : 0xFFD700;
+                const orb = new THREE.Mesh(orbGeo, new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 1 }));
+                orb.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*10, (Math.random()-0.5)*10);
+                scene.add(orb);
+                orbs.push({ mesh: orb, speed: 0.005 + Math.random()*0.01 });
+            }
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+                candles.forEach(c => { c.mesh.position.y += Math.sin(time * 2 + c.offset) * 0.01; c.mesh.rotation.y += c.speed * 0.5; });
+                orbs.forEach((o, i) => { o.mesh.position.x += Math.sin(time + i) * 0.02; o.mesh.position.y += Math.cos(time + i) * 0.02; });
+                scene.rotation.y = Math.sin(time * 0.5) * 0.05;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                scene.rotation.x = mouseY * 0.05; scene.rotation.y = mouseX * 0.05;
+                document.querySelector('.hero-content').style.transform = `translate(${mouseX * 10}px, ${-mouseY * 10}px)`;
+            });
+        }
+
+        // 5. Particles, TV Chart & Flower 
+        function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            if(!canvas) return; const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const isMobile = window.innerWidth < 768; const particles = [];
+            for(let i=0; i<(isMobile ? 25 : 50); i++) {
+                particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5, radius: Math.random()*2+1, color: Math.random()>0.5 ? '#FF6B00' : '#00E5FF' });
+            }
+            function anim() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                for(let i=0; i<particles.length; i++) {
+                    let p = particles[i]; p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0 || p.x > canvas.width) p.vx *= -1; if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2); ctx.fillStyle = p.color; ctx.shadowBlur = 10; ctx.shadowColor = p.color; ctx.fill();
+                    if (!isMobile) {
+                        for(let j=i+1; j<particles.length; j++) {
+                            let dist = Math.hypot(p.x - particles[j].x, p.y - particles[j].y);
+                            if(dist < 150) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = `rgba(255,255,255,${0.1 - dist/1500})`; ctx.stroke(); }
+                        }
+                    }
+                } requestAnimationFrame(anim);
+            } anim();
+            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        }
+
+        function initTVChart() {
+            const canvas = document.getElementById('tv-chart');
+            if(!canvas) return; const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            const candles = []; const spacing = 16; let price = canvas.height/2;
+            for(let i=0; i<Math.ceil(canvas.width/spacing)+20; i++) {
+                let isUp = Math.random()>0.48; let c = price + (isUp ? -Math.random()*20-5 : Math.random()*20+5);
+                candles.push({ open: price, close: c, high: Math.min(price, c)-Math.random()*15, low: Math.max(price, c)+Math.random()*15, isUp }); price = c;
+            }
+            let offsetX = 0;
+            function draw() {
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.strokeStyle = 'rgba(255,255,255,0.02)'; ctx.lineWidth = 1;
+                for(let i=0; i<canvas.width; i+=50) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,canvas.height); ctx.stroke(); }
+                for(let i=0; i<canvas.height; i+=50) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(canvas.width,i); ctx.stroke(); }
+                if((offsetX += 0.5) > spacing) {
+                    offsetX = 0; candles.shift();
+                    let l = candles[candles.length-1]; let isUp = Math.random()>0.48; let c = l.close + (isUp ? -Math.random()*20-5 : Math.random()*20+5);
+                    candles.push({ open: l.close, close: c, high: Math.min(l.close, c)-Math.random()*15, low: Math.max(l.close, c)+Math.random()*15, isUp });
+                }
+                for(let i=0; i<candles.length; i++) {
+                    let c = candles[i], x = i*spacing - offsetX;
+                    ctx.strokeStyle = ctx.fillStyle = c.isUp ? '#00E5FF' : '#FF6B00';
+                    ctx.beginPath(); ctx.moveTo(x+6, c.high); ctx.lineTo(x+6, c.low); ctx.stroke();
+                    ctx.fillRect(x, Math.min(c.open, c.close), 12, Math.abs(c.close - c.open) || 1);
+                } requestAnimationFrame(draw);
+            } draw();
+            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        }
+
+        function initFlower3D() {
+            const canvas = document.getElementById('flower-canvas');
+            if(!canvas) return;
+            const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(75, canvas.clientWidth/canvas.clientHeight, 0.1, 1000); camera.position.z = 5;
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            const pLight = new THREE.PointLight(0xFF6B00, 2, 50); pLight.position.set(2,2,2); scene.add(pLight);
+            const petals = [], group = new THREE.Group(), mat = new THREE.MeshStandardMaterial({ color: 0xFFD700, emissive: 0xFF6B00, emissiveIntensity: 0.2, wireframe: true });
+            for(let i=0; i<8; i++) {
+                const petal = new THREE.Mesh(new THREE.ConeGeometry(0.5, 2, 4), mat); petal.position.y = 1; petal.rotation.x = Math.PI/2;
+                const pivot = new THREE.Group(); pivot.rotation.z = (i*Math.PI*2)/8; pivot.add(petal); group.add(pivot);
+                petals.push({ mesh: petal, targetRotX: Math.PI/2 });
+            }
+            group.add(new THREE.Mesh(new THREE.IcosahedronGeometry(0.6, 0), new THREE.MeshStandardMaterial({ color: 0xFF6B00, emissive: 0xFF6B00 })));
+            scene.add(group); group.position.x = 2;
+            let isBlooming = false;
+            new IntersectionObserver(e => { if(e[0].isIntersecting && !isBlooming) { isBlooming = true; petals.forEach(p => p.targetRotX = Math.PI/6); }}, { threshold: 0.5 }).observe(document.getElementById('about'));
+            function anim() { requestAnimationFrame(anim); group.rotation.y += 0.005; group.rotation.x = Math.sin(Date.now()*0.001)*0.1; if(isBlooming) petals.forEach(p => p.mesh.rotation.x += (p.targetRotX - p.mesh.rotation.x)*0.05); renderer.render(scene, camera); } anim();
+            window.addEventListener('resize', () => { camera.aspect = canvas.clientWidth/canvas.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(canvas.clientWidth, canvas.clientHeight); });
+        }
+    </script>
 </body>
 </html>
-
