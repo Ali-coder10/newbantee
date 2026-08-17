@@ -1,128 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BanteeX | 3D Immersive Trading Platform</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Three.js for 3D Background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-   <link rel="stylesheet" href="css/style.css">
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanteeX | 3D Immersive Trading Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Updated CSS Path for GitHub Pages Compatibility -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="trident-spin">🔱</div>
-        <div class="brand-text">BANTEEX</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill"></div>
-        </div>
-    </div>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="trident-spin">🔱</div>
+        <div class="brand-text">BANTEEX</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
 
-    <div class="global-watermark">TEAM BANTEEX</div>
+    <div class="global-watermark">TEAM BANTEEX</div>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="logo">🔱 BANTEEX</div>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#indicators">Indicators</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Join Community</button>
-    </header>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">🔱 BANTEEX</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#indicators">Indicators</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">Join Community</button>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <!-- 3D Canvas Background -->
-        <canvas id="three-canvas"></canvas>
-        
-        <div class="hero-content">
-            <h1 class="hero-headline bebas">
-                <span>TRADE WITH</span>
-                <span class="text-orange">PRECISION.</span>
-                <div class="gradient-line" style="width: 80%;"></div>
-                <span>BUILT ON</span>
-                <span class="text-orange">SMART MONEY.</span>
-                <div class="gradient-line" style="width: 80%;"></div>
-            </h1>
-            
-            <p class="hero-subtitle">Professional SMC Indicators for serious traders</p>
-            
-            <div class="hero-buttons">
-                <button class="btn-primary" style="padding: 1.2rem 3rem;">Explore Indicators</button>
-                <button class="btn-outline" style="padding: 1.2rem 3rem;">Join Bantee Community</button>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat-badge"><span class="counter" data-target="5">0</span>+ Indicators</div>
-                <div class="stat-badge">SMC Based</div>
-                <div class="stat-badge">Live Tested</div>
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section -->
+    <section id="hero">
+        <!-- 3D Canvas Background -->
+        <canvas id="three-canvas"></canvas>
+        
+        <div class="hero-content">
+            <h1 class="hero-headline bebas">
+                <span>TRADE WITH</span>
+                <span class="text-orange">PRECISION.</span>
+                <div class="gradient-line" style="width: 80%;"></div>
+                <span>BUILT ON</span>
+                <span class="text-orange">SMART MONEY.</span>
+                <div class="gradient-line" style="width: 80%;"></div>
+            </h1>
+            
+            <p class="hero-subtitle">Professional SMC Indicators for serious traders</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" style="padding: 1.2rem 3rem;">Explore Indicators</button>
+                <button class="btn-outline" style="padding: 1.2rem 3rem;">Join Bantee Community</button>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-badge"><span class="counter" data-target="5">0</span>+ Indicators</div>
+                <div class="stat-badge">SMC Based</div>
+                <div class="stat-badge">Live Tested</div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Indicators Section -->
-    <section id="indicators">
-        <div class="section-header">
-            <h2 class="bebas">OUR INDICATORS</h2>
-            <div class="gradient-line"></div>
-        </div>
-        
-        <div class="grid-container">
-            <!-- Cards -->
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-1.html'">
-                <div class="card-icon">🔱</div>
-                <h3 class="card-title">SMC Liquidity Sweep</h3>
-                <p class="card-desc">Automatically detect buy-side and sell-side liquidity pools and sweep formations within specific kill zones.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-2.html'">
-                <div class="card-icon">📊</div>
-                <h3 class="card-title">BTC SMC Scalper</h3>
-                <p class="card-desc">High-frequency algorithmic levels specifically optimized for Bitcoin volatility and micro-structure breaks.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-3.html'">
-                <div class="card-icon">🎯</div>
-                <h3 class="card-title">Demand Zone Hunter</h3>
-                <p class="card-desc">Identify unmitigated order blocks and institutional fair value gaps before the price returns to them.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-            
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-4.html'">
-                <div class="card-icon">📈</div>
-                <h3 class="card-title">Kill Zone EMA Confluence</h3>
-                <p class="card-desc">Combines algorithmic session times with institutional EMAs to filter out low-probability setups.</p>
-                <div class="card-link">View Details →</div>
-            </div>
+    <!-- Indicators Section -->
+    <section id="indicators">
+        <div class="section-header">
+            <h2 class="bebas">OUR INDICATORS</h2>
+            <div class="gradient-line"></div>
+        </div>
+        
+        <div class="grid-container">
+            <!-- Cards -->
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-1.html'">
+                <div class="card-icon">🔱</div>
+                <h3 class="card-title">SMC Liquidity Sweep</h3>
+                <p class="card-desc">Automatically detect buy-side and sell-side liquidity pools and sweep formations within specific kill zones.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-2.html'">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">BTC SMC Scalper</h3>
+                <p class="card-desc">High-frequency algorithmic levels specifically optimized for Bitcoin volatility and micro-structure breaks.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-3.html'">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Demand Zone Hunter</h3>
+                <p class="card-desc">Identify unmitigated order blocks and institutional fair value gaps before the price returns to them.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+            
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-4.html'">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">Kill Zone EMA Confluence</h3>
+                <p class="card-desc">Combines algorithmic session times with institutional EMAs to filter out low-probability setups.</p>
+                <div class="card-link">View Details →</div>
+            </div>
 
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-5.html'">
-                <div class="card-icon">⚡</div>
-                <h3 class="card-title">Multi-Signal Dashboard</h3>
-                <p class="card-desc">A unified panel tracking RSI divergences, structural shifts, and volume anomalies across multiple pairs.</p>
-                <div class="card-link">View Details →</div>
-            </div>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-5.html'">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Multi-Signal Dashboard</h3>
+                <p class="card-desc">A unified panel tracking RSI divergences, structural shifts, and volume anomalies across multiple pairs.</p>
+                <div class="card-link">View Details →</div>
+            </div>
 
-            <div class="indicator-card tilt-card" onclick="location.href='indicator-6.html'">
-                <div class="card-icon">🔍</div>
-                <h3 class="card-title">Structure Break Detector</h3>
-                <p class="card-desc">Real-time CHoCH (Change of Character) and BOS (Break of Structure) mapping with trailing stops.</p>
-                <div class="card-link">View Details →</div>
-            </div>
-        </div>
-    </section>
+            <div class="indicator-card tilt-card" onclick="location.href='indicator-6.html'">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">Structure Break Detector</h3>
+                <p class="card-desc">Real-time CHoCH (Change of Character) and BOS (Break of Structure) mapping with trailing stops.</p>
+                <div class="card-link">View Details →</div>
+            </div>
+        </div>
+    </section>
 
-   <!-- JS Scripts -->
-    <script src="js/main.js"></script>
-  
+    <!-- JS Scripts -->
+    <script src="./js/main.js"></script>
 </body>
 </html>
